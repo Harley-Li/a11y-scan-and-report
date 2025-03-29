@@ -1,0 +1,8 @@
+{
+  "name": "a11y-scan-and-report",
+  "version": "1.0.0",
+  "dependencies": {
+    "lighthouse": "^12.5.1",
+    "chrome-launcher": "latest"
+  }
+}
