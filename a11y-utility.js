@@ -205,6 +205,9 @@ const createReportFolder = async () => {
 //#endregion ------------------------- building reports --------------------------------------------------
 
 //#region ------------------------- compare reports ---------------------------------------------------
+function escapeHtml(unsafe) {
+    return unsafe.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+}
 async function compareJsonFiles(file1, file2) {
     try {
         const baseReport = JSON.parse(await fs.readFile(file1, 'utf8'));
@@ -250,7 +253,7 @@ function generateHtmlTable(changes) {
 
         Object.keys(changes[key].items).map((itemKey) => {
             let item = changes[key].items[itemKey];
-            a11yItems += `<tr class="${item[2] ? 'change' : ''}"><th>${itemKey}</th><td>${item[0]}</td><td>${item[1]}</td></tr>`;
+            a11yItems += `<tr class="${item[2] ? 'change' : ''}"><th>${escapeHtml(itemKey)}</th><td>${item[0]}</td><td>${item[1]}</td></tr>`;
         });
 
         page += table + `<tbody>${a11yItems}<tbody></table>`;
