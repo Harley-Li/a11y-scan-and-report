@@ -1,8 +1,9 @@
 {
-  "name": "a11y-scan-and-report",
-  "version": "1.0.0",
-  "dependencies": {
-    "lighthouse": "^12.5.1",
-    "chrome-launcher": "latest"
-  }
+    "name": "a11y-utility",
+    "description": "This utility is for web pages a11y scaning and reporting using lighthouse and chrome-launcher, and also for web pages a11y issues comparison between different environments or implementation.",
+    "version": "1.0.0",
+    "dependencies": {
+        "lighthouse": "^12.5.1",
+        "chrome-launcher": "latest"
+    }
 }
