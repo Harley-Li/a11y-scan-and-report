@@ -5,8 +5,10 @@ const fs = require('fs');
 const path = require('path');
 
 // 要抓取的网页 URL 数组
-const urls = ['https://www.google.com', 'https://www.baidu.com', 'https://www.163.com', 'https://www.sina.com'];
+const urls = ['https://www.google.com', 'https://www.baidu.com', 'https://www.163.com', 'https://www.fidelity.com.tw'];
 const MAX_WORKERS = 6;
+// 代理服务器地址和端口，这里需要替换为实际的代理信息
+const PROXY_SERVER = 'http://your-proxy-server:port';
 
 if (isMainThread) {
     // 主线程逻辑
@@ -38,7 +40,9 @@ if (isMainThread) {
     const workerUrls = workerData;
     (async () => {
         try {
-            const browser = await puppeteer.launch();
+            const browser = await puppeteer.launch({
+                args: [`--proxy-server=${PROXY_SERVER}`],
+            });
             for (const url of workerUrls) {
                 const page = await browser.newPage();
                 await page.setExtraHTTPHeaders({
